@@ -151,7 +151,7 @@ DES 알고리즘은 64bits의 평문(plaintext)를 Key를 이용하여 64bits의
 	XOR 연산 후 48bit는 8개로 나누어져 S-Box 연산을 수행한다. 8개의 S-Box는 6bit의 입력을 4bit 출력으로 대체한다. 6bit의 입력이 주어지면 외부 2bit를 사용하여 행을 선택하고 내부의 4bit를 사용하여 4bit 출력을 찾는다. 예를 들어, 입력 “011010”은 외부 비트 “00” 및 내부 비트 “1101”을 갖는다. 해당 위치의 S-box의 값이 출력 되고 8개의 S-box에서 4bit가 출력되어 32bit의 값이 생성된다.
 
 4.	P( Permutation ) 작업 수행 및 결과 값 출력  
-  ![P permutation, P table]({{site.url}}/img/secretum17/11.png)  
+  ![P permutation, P table]({{site.url}}/img/secretum17/11.PNG)  
 
 	함수 P는 S-box의 결과값 32bit를 다시 한 번 섞어서 결과 값으로 출력한다.
 
@@ -222,7 +222,7 @@ process_message는 8byte의 원본 messeage_piece와 key_set을 입력 받아서
 
 ### 2.4 UI 구성
 
-![프로그램 UI DES, MD5]({{site.url}}/img/secretum17/17.png)  
+![프로그램 UI DES, MD5]({{site.url}}/img/secretum17/17.PNG)  
 
 
 본 프로그램은 MFC를 사용하여 UI를 구성하였다. 기본적으로 파일에 대한 암호화를 수행하여서 암호화 또는 복호화 할 파일을 입력받을 창이 존재한다. DES 알고리즘은 대칭키 기반으로 동작하기 때문에 key file을 선택할 수 있도록 박스를 구성하였고 그 안에 임시키 파일을 생성할 수 있는 버튼을 마련하였다. 암호화, 복호화 된 결과물은 파일로 출력이 된다.
