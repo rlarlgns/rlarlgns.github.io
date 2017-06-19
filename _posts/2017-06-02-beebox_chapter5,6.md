@@ -7,11 +7,8 @@ post: true
 tag:
 - beebox
 - web
-comments: true
----
 
-Beebox chapter 5, 6 실습
-==========
+---
 
 실습 기간 : 2017.06.01 ~ 2017.06.02  
 실습 환경 : kali linux, beebox
