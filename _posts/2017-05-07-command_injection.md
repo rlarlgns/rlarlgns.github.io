@@ -200,6 +200,7 @@ pid_t fork(void)
 - PHP  
   - exec(), system(), passthru(), popen(), require(), include(), eval(), preg_replace()  
 
+---
 
 Command Injection 실습
 ---
