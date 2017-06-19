@@ -34,7 +34,7 @@ Content
 
 ---
 
-1. Command Injection 기법이란?
+Command Injection 기법이란?
 ---
 
 ### 1.1 Command Injection 정의
@@ -79,7 +79,7 @@ chmod 4755 setuid.txt        // -rwsr-xr-x
 
 ---
 
-2. Command Injection 관련 취약 함수 분석
+Command Injection 관련 취약 함수 분석
 ---
 ### 2.1. System()
 
@@ -134,7 +134,7 @@ int execle ( const char path, const char *arg0, ... , const char *argn, (char *)
 - 새로운 프로세스의 이미지는 실행 파일을 실행해서 얻음  
 - 이들 함수는 공통적으로 실행할 파일의 경로 정보를 가짐  
 - 함수 별 요약  
-­ - execv( )  
+ - execv( )  
     - path에 지정한 경로명에 있는 파일 실행하며 argv를 인자로 전달  
     - argv는 포인터 배열로 마지막에 NULL 문자열을 저장  
  - execve( )  
@@ -201,7 +201,7 @@ pid_t fork(void)
   - exec(), system(), passthru(), popen(), require(), include(), eval(), preg_replace()  
 
 
-3. Command Injection 실습
+Command Injection 실습
 ---
 
 ### 3.1. FTZ level 3
