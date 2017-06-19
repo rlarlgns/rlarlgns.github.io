@@ -45,10 +45,10 @@ Command Injection 기법이란?
 ### 1.2 SetUID, SetGID, Sticky Bit
 
 ```
-chmod 1755 stickybit.txt     // -rwxr-xr-t
-chmod 2755 setgid.txt        // -rwxr-sr-x
-chmod 4755 setuid.txt        // -rwsr-xr-x
-          [ ex - 권한 설정 ]
+    chmod 1755 stickybit.txt     // -rwxr-xr-t
+    chmod 2755 setgid.txt        // -rwxr-sr-x
+    chmod 4755 setuid.txt        // -rwsr-xr-x
+              [ ex - 권한 설정 ]
 ```
 
 - SetUID, SetGID는 파일에 다른 계정이나 그룹의 권한을 임시로 부여하는 개념으로 최신의 리눅스 커널버전에서는 system과 같은 쉘을 실행하는 함수를 실행하기 위해서 알맞은 권한을 획득할 필요가 있다. ( 낮은 수준의 운영체제에서는 자동으로 권한 획득 )  
@@ -101,32 +101,32 @@ Command Injection 관련 취약 함수 분석
 ­ SIGOUIT : 종료 시그널, QUIT문자를 의미, 코어 파일을 작성   
 
 ```
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-void main( char* argc, char** argv ) {
-        char cmd[60] = "/bin/ls ";
-        strcat(cmd, argv[1]);
-        system(cmd);
-}
-[ ex - soruce code – command_injection.c ]
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+    void main( char* argc, char** argv ) {
+            char cmd[60] = "/bin/ls ";
+            strcat(cmd, argv[1]);
+            system(cmd);
+    }
+    [ ex - soruce code – command_injection.c ]
 
-­ - SetUID 설정 chmod 4755 command_injection.c
-­ - 검증 되지 않은 입력( Untrusted Input )
+    ­ - SetUID 설정 chmod 4755 command_injection.c
+    ­ - 검증 되지 않은 입력( Untrusted Input )
 ```
 
 ### 2.2. exec 계열 함수
 
 ```
-#include <unistd.h>
-int execv  ( const char *path, char *const argv[]);
-int execve ( const char *path, char *const argv[], char *const envp);
-int execlp ( const char *file, const char *arg0, ... , const char *argn, (char *)0);
-int execvp ( const char *file, char *const argv[]);
-int execl  ( const char *path, const char *arg0, ... , const char *argn, (char *)0);
-int execle ( const char path, const char *arg0, ... , const char *argn, (char *)0,
-             char *const envp[]);
-                    [ ex - exec 계열 함수 원형 ]
+    #include <unistd.h>
+    int execv  ( const char *path, char *const argv[]);
+    int execve ( const char *path, char *const argv[], char *const envp);
+    int execlp ( const char *file, const char *arg0, ... , const char *argn, (char *)0);
+    int execvp ( const char *file, char *const argv[]);
+    int execl  ( const char *path, const char *arg0, ... , const char *argn, (char *)0);
+    int execle ( const char path, const char *arg0, ... , const char *argn, (char *)0,
+                 char *const envp[]);
+                        [ ex - exec 계열 함수 원형 ]
 ```
 
 - exec 계열 함수들은 현재의 프로세스 이미지를 새로운 프로세스 이미지로 덮어쓴다.  
@@ -134,53 +134,53 @@ int execle ( const char path, const char *arg0, ... , const char *argn, (char *)
 - 새로운 프로세스의 이미지는 실행 파일을 실행해서 얻음  
 - 이들 함수는 공통적으로 실행할 파일의 경로 정보를 가짐  
 - 함수 별 요약  
-  - execv( )  
+  execv( )  
     - path에 지정한 경로명에 있는 파일 실행하며 argv를 인자로 전달  
     - argv는 포인터 배열로 마지막에 NULL 문자열을 저장  
-  - execve( )  
+  execve( )  
     - execv() 함수와 동일하게 동작하며 추가로 envp 포인터 배열을 인자로 전달  
-  - execlp( )  
+  execlp( )  
     - file에 지정한 파일을 실행하며 arg0 ~ argn만 인자로 전달  
     - 파일은 함수를 호출한 프로세스의 검색 경로(환경 변수 PATH에 정의된 경로)에서 탐색  
     - 함수의 마지막 인자에 NULL 포인터로 지정  
-  - execvp( )  
+  execvp( )  
     - file에 지정한 파일 실행, argv를 인자로 전달  
     - 배열의 마지막 인자 NULL 문자열 저장해야 됨  
-  - execl( )   
+  execl( )   
     - path에 지정한 경로명의 파일을 실행하며 arg0 ~ argn을 인자로 전달  
     - 일반적으로 arg0 위치에 실행 파일 명 저장  
     - 함수의 마지막 인자로 인자의 끝을 의미하는 NULL 포인터((char*)0)을 지정
-  - execle( )  
+  execle( )  
     - envp 인자 전달하는 것을 제외하고 execl()과 동일하게 실행 및 인자 전달 수행    
     - envp는 포인터 배열로 마지막에 NULL 문자를 저장, 새로운 환경 변수 설정 가능  
 
 
 ```
-#include <unistd.h>
-int main() {  
-     execl("/bin/sh", "/bin/sh", NULL);
-}
-         [ ex - execl 함수 ]
+    #include <unistd.h>
+    int main() {  
+         execl("/bin/sh", "/bin/sh", NULL);
+    }
+             [ ex - execl 함수 ]
 ```
 
 ```
-#include <unistd.h>
-#include <string.h>
-int main(int argc, char **argv)  {
-     char *env[]={"MYHOME=seoul", "MYTEST=1234", (char *)0};
-     execle("/bin/sh", "sh", NULL, env);
-     perror();
-}
-            [ ex - execle 함수 ]
+    #include <unistd.h>
+    #include <string.h>
+    int main(int argc, char **argv)  {
+         char *env[]={"MYHOME=seoul", "MYTEST=1234", (char *)0};
+         execle("/bin/sh", "sh", NULL, env);
+         perror();
+    }
+                [ ex - execle 함수 ]
 ```
 
 ### 2.3. fork()   
 
 ```
-#include <sys/types.h>
-#include <unistd.h>
-pid_t fork(void)
-[ ex – fork 함수 원형 ]
+    #include <sys/types.h>
+    #include <unistd.h>
+    pid_t fork(void)
+    [ ex – fork 함수 원형 ]
 ```
 
 - 자식 프로세스를 만들기 위해서 사용되는 프로세스 생성기
@@ -209,106 +209,106 @@ Command Injection 실습
 
 source code
 ```
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-int main(int argc, char **argv){
-    char cmd[100];
-    if( argc!=2 ){
-        printf( "Auto Digger Version 0.9\n" );
-        printf( "Usage : %s host\n", argv[0] );
-        exit(0);
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <unistd.h>
+    int main(int argc, char **argv){
+        char cmd[100];
+        if( argc!=2 ){
+            printf( "Auto Digger Version 0.9\n" );
+            printf( "Usage : %s host\n", argv[0] );
+            exit(0);
+        }
+        strcpy( cmd, "dig @" );
+        strcat( cmd, argv[1] );
+        strcat( cmd, " version.bind chaos txt");
+        system( cmd );
     }
-    strcpy( cmd, "dig @" );
-    strcat( cmd, argv[1] );
-    strcat( cmd, " version.bind chaos txt");
-    system( cmd );
-}
-```
+    ```
 
-분석
-```
-# 공격 대상 파일 찾기
-     1. 파일명
-          find / -name autodig 2> /dev/null
-          / 경로를 기준으로 이름이 autodig인 파일을 탐색,
-          2> (오류메세지)를 /dev/null 로 보내어 오류메세지 안보이게 함
-     2. 파일 권한
-          find / -perm +6000 -user level4 2> /dev/null
-# 공격 대상 파일의 기능 분석
-# 리버싱을 통한 의사 코드 복원
-0x08048430 <main+0>:    push   %ebp
-0x08048431 <main+1>:    mov    %esp,%ebp
-     - 스택 구성
-     - ebp 주소를 저장하고 현재의 esp를 ebp에 저장
-0x08048433 <main+3>:    sub    $0x78,%esp
-     - 변수 선언 공간 확보
-0x08048436 <main+6>:    and    $0xfffffff0,%esp
-0x08048439 <main+9>:    mov    $0x0,%eax
-0x0804843e <main+14>:   sub    %eax,%esp
-0x08048440 <main+16>:   cmpl   $0x2,0x8(%ebp)
-0x08048444 <main+20>:   je     0x8048475 <main+69>
-     - 조건문 EBP+8의 위치에 값이 0x2인지 비교
-     - 참일 경우 0x8048475 <main+69>로 이동
-인자값이 2가 아닐 경우 수행
-0x08048446 <main+22>:   sub    $0xc,%esp
-0x08048449 <main+25>:   push   $0x8048588
-0x0804844e <main+30>:   call   0x8048340 <printf>
-0x08048453 <main+35>:   add    $0x10,%esp
-0x08048456 <main+38>:   sub    $0x8,%esp
-0x08048459 <main+41>:   mov    0xc(%ebp),%eax
-0x0804845c <main+44>:   pushl  (%eax)
-0x0804845e <main+46>:   push   $0x80485a1
-0x08048463 <main+51>:   call   0x8048340 <printf>
-0x08048468 <main+56>:   add    $0x10,%esp
-0x0804846b <main+59>:   sub    $0xc,%esp
-0x0804846e <main+62>:   push   $0x0
-0x08048470 <main+64>:   call   0x8048360 <exit>
-인자값이 2일경우 수행 구문
-0x08048475 <main+69>:   sub    $0x8,%esp
-0x08048478 <main+72>:   push   $0x80485b2
-     - 0x80485b2 <_IO_stdin_used+46>:    " dig @"
-0x0804847d <main+77>:   lea    0xffffff88(%ebp),%eax
-0x08048480 <main+80>:   push   %eax
-0x08048481 <main+81>:   call   0x8048370 <strcpy>
-     - strcpy의 인자로 스택에 push된 %eax, dig @ 사용
-0x08048486 <main+86>:   add    $0x10,%esp
-0x08048489 <main+89>:   sub    $0x8,%esp
-0x0804848c <main+92>:   mov    0xc(%ebp),%eax
-0x0804848f <main+95>:   add    $0x4,%eax
-0x08048492 <main+98>:   pushl  (%eax)
-     - 입력받은 아이피 주소
-0x08048494 <main+100>:  lea    0xffffff88(%ebp),%eax
-0x08048497 <main+103>:  push   %eax
-0x08048498 <main+104>:  call   0x8048330 <strcat>
-     - dig @ 와 아이피 주소 문자열 합침
-0x0804849d <main+109>:  add    $0x10,%esp
-0x080484a0 <main+112>:  sub    $0x8,%esp
-0x080484a3 <main+115>:  push   $0x80485b8
-     - 0x80485b8 <_IO_stdin_used+52>:   " version.bind chaos txt"
-0x080484a8 <main+120>:  lea    0xffffff88(%ebp),%eax
-0x080484ab <main+123>:  push   %eax
-0x080484ac <main+124>:  call   0x8048330 <strcat>
-     - push 된 두인자의 문자열 합침
-0x080484b1 <main+129>:  add    $0x10,%esp
-0x080484b4 <main+132>:  sub    $0x8,%esp
-0x080484b7 <main+135>:  push   $0xbbc
-0x080484bc <main+140>:  push   $0xbbc
-     - 3004
-0x080484c1 <main+145>:  call   0x8048350 <setreuid>
-     - setreuid : 현재 프로세스의 유효한 사용자 ID 설정
-     - 인자 : ruid, euid
-0x080484c6 <main+150>:  add    $0x10,%esp
-0x080484c9 <main+153>:  sub    $0xc,%esp
-0x080484cc <main+156>:  lea    0xffffff88(%ebp),%eax
-0x080484cf <main+159>:  push   %eax
-0x080484d0 <main+160>:  call   0x8048310 <system>
-     - 시스템 함수 실행
-0x080484d5 <main+165>:  add    $0x10,%esp
-0x080484d8 <main+168>:  leave
-0x080484d9 <main+169>:  ret
-0x080484da <main+170>:  nop
-0x080484db <main+171>:  nop
+    분석
+    ```
+    # 공격 대상 파일 찾기
+         1. 파일명
+              find / -name autodig 2> /dev/null
+              / 경로를 기준으로 이름이 autodig인 파일을 탐색,
+              2> (오류메세지)를 /dev/null 로 보내어 오류메세지 안보이게 함
+         2. 파일 권한
+              find / -perm +6000 -user level4 2> /dev/null
+    # 공격 대상 파일의 기능 분석
+    # 리버싱을 통한 의사 코드 복원
+    0x08048430 <main+0>:    push   %ebp
+    0x08048431 <main+1>:    mov    %esp,%ebp
+         - 스택 구성
+         - ebp 주소를 저장하고 현재의 esp를 ebp에 저장
+    0x08048433 <main+3>:    sub    $0x78,%esp
+         - 변수 선언 공간 확보
+    0x08048436 <main+6>:    and    $0xfffffff0,%esp
+    0x08048439 <main+9>:    mov    $0x0,%eax
+    0x0804843e <main+14>:   sub    %eax,%esp
+    0x08048440 <main+16>:   cmpl   $0x2,0x8(%ebp)
+    0x08048444 <main+20>:   je     0x8048475 <main+69>
+         - 조건문 EBP+8의 위치에 값이 0x2인지 비교
+         - 참일 경우 0x8048475 <main+69>로 이동
+    인자값이 2가 아닐 경우 수행
+    0x08048446 <main+22>:   sub    $0xc,%esp
+    0x08048449 <main+25>:   push   $0x8048588
+    0x0804844e <main+30>:   call   0x8048340 <printf>
+    0x08048453 <main+35>:   add    $0x10,%esp
+    0x08048456 <main+38>:   sub    $0x8,%esp
+    0x08048459 <main+41>:   mov    0xc(%ebp),%eax
+    0x0804845c <main+44>:   pushl  (%eax)
+    0x0804845e <main+46>:   push   $0x80485a1
+    0x08048463 <main+51>:   call   0x8048340 <printf>
+    0x08048468 <main+56>:   add    $0x10,%esp
+    0x0804846b <main+59>:   sub    $0xc,%esp
+    0x0804846e <main+62>:   push   $0x0
+    0x08048470 <main+64>:   call   0x8048360 <exit>
+    인자값이 2일경우 수행 구문
+    0x08048475 <main+69>:   sub    $0x8,%esp
+    0x08048478 <main+72>:   push   $0x80485b2
+         - 0x80485b2 <_IO_stdin_used+46>:    " dig @"
+    0x0804847d <main+77>:   lea    0xffffff88(%ebp),%eax
+    0x08048480 <main+80>:   push   %eax
+    0x08048481 <main+81>:   call   0x8048370 <strcpy>
+         - strcpy의 인자로 스택에 push된 %eax, dig @ 사용
+    0x08048486 <main+86>:   add    $0x10,%esp
+    0x08048489 <main+89>:   sub    $0x8,%esp
+    0x0804848c <main+92>:   mov    0xc(%ebp),%eax
+    0x0804848f <main+95>:   add    $0x4,%eax
+    0x08048492 <main+98>:   pushl  (%eax)
+         - 입력받은 아이피 주소
+    0x08048494 <main+100>:  lea    0xffffff88(%ebp),%eax
+    0x08048497 <main+103>:  push   %eax
+    0x08048498 <main+104>:  call   0x8048330 <strcat>
+         - dig @ 와 아이피 주소 문자열 합침
+    0x0804849d <main+109>:  add    $0x10,%esp
+    0x080484a0 <main+112>:  sub    $0x8,%esp
+    0x080484a3 <main+115>:  push   $0x80485b8
+         - 0x80485b8 <_IO_stdin_used+52>:   " version.bind chaos txt"
+    0x080484a8 <main+120>:  lea    0xffffff88(%ebp),%eax
+    0x080484ab <main+123>:  push   %eax
+    0x080484ac <main+124>:  call   0x8048330 <strcat>
+         - push 된 두인자의 문자열 합침
+    0x080484b1 <main+129>:  add    $0x10,%esp
+    0x080484b4 <main+132>:  sub    $0x8,%esp
+    0x080484b7 <main+135>:  push   $0xbbc
+    0x080484bc <main+140>:  push   $0xbbc
+         - 3004
+    0x080484c1 <main+145>:  call   0x8048350 <setreuid>
+         - setreuid : 현재 프로세스의 유효한 사용자 ID 설정
+         - 인자 : ruid, euid
+    0x080484c6 <main+150>:  add    $0x10,%esp
+    0x080484c9 <main+153>:  sub    $0xc,%esp
+    0x080484cc <main+156>:  lea    0xffffff88(%ebp),%eax
+    0x080484cf <main+159>:  push   %eax
+    0x080484d0 <main+160>:  call   0x8048310 <system>
+         - 시스템 함수 실행
+    0x080484d5 <main+165>:  add    $0x10,%esp
+    0x080484d8 <main+168>:  leave
+    0x080484d9 <main+169>:  ret
+    0x080484da <main+170>:  nop
+    0x080484db <main+171>:  nop
 ```
 
 공격
