@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Beebox chapter 5, 6 실습"
-description: 웹 보안 실습
+description: "[STUDY] 웹 보안 실습""
 date: 2017-06-02
 tags: [study, beebox, web]
 comments: true

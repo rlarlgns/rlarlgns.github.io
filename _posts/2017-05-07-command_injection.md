@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Command Injection 요약"
-description: "간단한 실습 정리, system command injection"
+description: "[STUDY] 간단한 실습 정리, system command injection"
 date:   2017-05-07
 tag: [study, command injection, system]
 comments: true
@@ -317,7 +317,7 @@ source code
  - /bin/autodig "127.0.0.1; sh"  
 
 
-  
+
 
 참고문헌
 ---
