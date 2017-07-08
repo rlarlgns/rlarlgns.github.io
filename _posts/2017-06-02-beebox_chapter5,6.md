@@ -6,60 +6,61 @@ date:   2017-06-02
 tag: [study, beebox, web]
 comments: true
 share: true
-
 ---
+  
 
 실습 기간 : 2017.06.01 ~ 2017.06.02  
 실습 환경 : kali linux, beebox
-
-
-![pt]({{site.url}}/img/beebox/슬라이드1.png)  
-![pt]({{site.url}}/img/beebox/슬라이드2.PNG)  
-![pt]({{site.url}}/img/beebox/슬라이드3.PNG)  
-![pt]({{site.url}}/img/beebox/슬라이드4.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드5.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드6.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드7.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드8.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드9.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드10.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드11.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드12.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드13.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드14.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드15.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드16.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드17.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드18.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드19.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드20.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드21.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드22.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드23.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드24.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드25.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드26.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드27.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드28.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드29.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드30.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드31.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드32.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드33.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드34.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드35.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드36.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드37.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드38.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드39.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드40.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드41.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드42.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드43.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드44.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드45.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드46.PNG)
-![pt]({{site.url}}/img/beebox/슬라이드47.PNG)
+  
+---
+  
+![pt]({{site.url}}/img/beebox/1.png){: .center-image}. 
+![pt]({{site.url}}/img/beebox/2.PNG){: .center-image}.   
+![pt]({{site.url}}/img/beebox/3.PNG){: .center-image}  
+![pt]({{site.url}}/img/beebox/4.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/5.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/6.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/7.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/8.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/9.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/10.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/11.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/12.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/13.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/14.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/15.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/16.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/17.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/18.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/19.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/20.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/21.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/22.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/23.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/24.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/25.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/26.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/27.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/28.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/29.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/30.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/31.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/32.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/33.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/34.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/35.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/36.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/37.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/38.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/39.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/40.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/41.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/42.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/43.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/44.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/45.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/46.PNG){: .center-image}
+![pt]({{site.url}}/img/beebox/47.PNG){: .center-image}
 
 ---
 
