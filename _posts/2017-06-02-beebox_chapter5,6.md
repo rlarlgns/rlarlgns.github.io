@@ -7,15 +7,15 @@ tag: [study, beebox, web]
 comments: true
 share: true
 ---
-  
+
 
 실습 기간 : 2017.06.01 ~ 2017.06.02  
 실습 환경 : kali linux, beebox
-  
----
-  
-![pt]({{site.url}}/img/beebox/1.png){: .center-image}. 
-![pt]({{site.url}}/img/beebox/2.PNG){: .center-image}.   
+
+
+
+![pt]({{site.url}}/img/beebox/1.png){: .center-image}
+![pt]({{site.url}}/img/beebox/2.PNG){: .center-image}   
 ![pt]({{site.url}}/img/beebox/3.PNG){: .center-image}  
 ![pt]({{site.url}}/img/beebox/4.PNG){: .center-image}
 ![pt]({{site.url}}/img/beebox/5.PNG){: .center-image}
@@ -62,7 +62,7 @@ share: true
 ![pt]({{site.url}}/img/beebox/46.PNG){: .center-image}
 ![pt]({{site.url}}/img/beebox/47.PNG){: .center-image}
 
----
+  
 
 참고문헌
 ---

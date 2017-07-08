@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Command Injection 요약"
-description: 간단한 실습 정리, system command injection
+description: "간단한 실습 정리, system command injection"
 date:   2017-05-07
 tag: [study, command injection, system]
 comments: true
@@ -11,7 +11,7 @@ share: true
 실습 기간 : 2017.05.05 ~ 2017.05.07  
 실습 환경 : kali linux, FTZ
 
----
+
 
 Content
 ---
@@ -30,7 +30,7 @@ Content
 3. Command Injection 실습	   
 3.1. FTZ level 3	   
 
----
+
 
 Command Injection 기법이란?
 ---
@@ -75,7 +75,7 @@ Command Injection 기법이란?
             [ ex - code injection ( ;, &&, || ) ]
 ```
 
----
+
 
 Command Injection 관련 취약 함수 분석
 ---
@@ -198,7 +198,7 @@ Command Injection 관련 취약 함수 분석
 - PHP  
   - exec(), system(), passthru(), popen(), require(), include(), eval(), preg_replace()  
 
----
+
 
 Command Injection 실습
 ---
@@ -317,7 +317,7 @@ source code
  - /bin/autodig "127.0.0.1; sh"  
 
 
----
+  
 
 참고문헌
 ---
