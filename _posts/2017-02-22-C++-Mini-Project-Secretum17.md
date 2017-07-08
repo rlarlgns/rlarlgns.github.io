@@ -2,11 +2,12 @@
 layout: post
 title:  "C++ MINI PROJECT"
 description: "파일 암호화 프로그램"
-date:   2017-02-22
-tag: [project, C++, Encryption]
+date: 2017-02-22
+tags: [project, C++, Encryption]
 comments: true
 share: true
 ---
+  
 
 Secretum17
 ==========

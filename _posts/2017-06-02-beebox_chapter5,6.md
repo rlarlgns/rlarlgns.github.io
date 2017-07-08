@@ -2,13 +2,13 @@
 layout: post
 title:  "Beebox chapter 5, 6 실습"
 description: 웹 보안 실습
-date:   2017-06-02
-tag: [study, beebox, web]
+date: 2017-06-02
+tags: [study, beebox, web]
 comments: true
 share: true
 ---
 
-
+  
 실습 기간 : 2017.06.01 ~ 2017.06.02  
 실습 환경 : kali linux, beebox
 
@@ -62,7 +62,7 @@ share: true
 ![pt]({{site.url}}/img/beebox/46.PNG){: .center-image}
 ![pt]({{site.url}}/img/beebox/47.PNG){: .center-image}
 
-  
+
 
 참고문헌
 ---
