@@ -91,3 +91,7 @@ gems:
   - jekyll-admin
 
 exclude:            [vendor]
+<<<<<<< HEAD
+=======
+theme: jekyll-theme-minimal
+>>>>>>> 63f396f1c3449e7e2a59721989dc72fa2470882d
