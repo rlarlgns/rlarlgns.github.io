@@ -3,7 +3,7 @@
 # # # # # # # # # # # # #
 
 # Basic
-name:               "Kiko Plus"
+name:               "Kim kihoon"
 
 author:
   facebook:         your-id
@@ -24,7 +24,7 @@ author:
 
 copyright:
   year:             2017
-  name:             Kiko
+  name:             Kim kihoon
 
 # Google-analytics
 google-analytics:
@@ -32,7 +32,7 @@ google-analytics:
 
 # Disqus
 disqus:
-  id:               "kiko-plus"
+  id:               "Kim kihoon"
 
 # URL
 url:                "https://rlarlgns.github.io" # the base hostname & protocol for your site
@@ -62,7 +62,7 @@ nav:
   - name:           "Tags"
     url:            "/tags"
   - name:           "Github"
-    url:            "https://github.com/AWEEKJ/Kiko-plus"
+    url:            "https://github.com/rlarlgns"
 
 # Sass
 sass:
@@ -91,7 +91,3 @@ gems:
   - jekyll-admin
 
 exclude:            [vendor]
-<<<<<<< HEAD
-=======
-theme: jekyll-theme-minimal
->>>>>>> 63f396f1c3449e7e2a59721989dc72fa2470882d
