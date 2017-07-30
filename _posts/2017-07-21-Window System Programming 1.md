@@ -64,15 +64,17 @@ Source code : <https://github.com/rlarlgns/study/tree/master/Window%20System%20P
 ![1일차 실습]({{site.url}}/img/Window/Day1_1.jpg){: .center-image}  
 
 ### 실습 : CreateProcess
- - WinExec, CreateProcess, Exit Process, Terminate Process 함수 실습
+ - WinExec, CreateProcess, Exit Process, Terminate Process 함수 실습  
 ![1일차 실습]({{site.url}}/img/Window/Day1_2.jpg){: .center-image}  
-<script src="https://gist.github.com/rlarlgns/a92db8336a3d5a6810bda280f25312f3.js"></script>  
+<script src="https://gist.github.com/rlarlgns/25a9f366379bea460653db2ccd84f097.js"></script>  
 
 ### 실습 : Process List
  - 현재 실행중인 프로세스를 나열
  - EnumProcess()를 사용한 API를 이용한 방법, SnapShot()를 사용한 운영체제를 통한 방법 실습
- - 핸들 획득 후 프로세스를 Terminate 실습
-![1일차 실습]({{site.url}}/img/Window/Day1_3.jpg){: .center-image}  
+ - 핸들 획득 후 프로세스를 Terminate 실습  
+![1일차 실습]({{site.url}}/img/Window/Day1_3.jpg){: .center-image}
+<script src="https://gist.github.com/rlarlgns/0f1b01650ea712a69553dd7f9c103cef.js"></script>  
 
 ### 실습 : Process AB
 ![1일차 실습]({{site.url}}/img/Window/Day1_4.jpg){: .center-image}  
+<script src="https://gist.github.com/rlarlgns/ef10ca13f3cfbd04ab5db8f19c941a3a.js"></script>  
