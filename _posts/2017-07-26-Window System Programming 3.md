@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Window System Programming 3"
-description: "[STUDY] 스레드, TLS, 동기화"
+description: "[STUDY] 병렬 프로그래밍, IPC, 파이프 "
 date: 2017-07-26
-tags: [study, 스레드, TLS, 동기화]
+tags: [study, 병렬 프로그래밍, IPC, 파이프 ]
 comments: true
 share: true
 ---
