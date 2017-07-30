@@ -61,10 +61,12 @@ Source code : <https://github.com/rlarlgns/study/tree/master/Window%20System%20P
  - 커널 오브젝트는 프로세스에 한정적임 -> 오브젝트를 생성한 프로세스만이 이를 제어할 수 있음 만약 다른 프로세스에서 이 오브젝트를 제어하고자 한다면 커널 오브젝트의 ID 값으로부터 핸들을 다시 얻어야 한다.
 
 # 1일차 실습  
+  
 ![1일차 실습]({{site.url}}/img/Window/Day1_1.jpg){: .center-image}  
 
 ### 실습 : CreateProcess
  - WinExec, CreateProcess, Exit Process, Terminate Process 함수 실습  
+
 ![1일차 실습]({{site.url}}/img/Window/Day1_2.jpg){: .center-image}  
 <script src="https://gist.github.com/rlarlgns/25a9f366379bea460653db2ccd84f097.js"></script>  
 
@@ -72,9 +74,11 @@ Source code : <https://github.com/rlarlgns/study/tree/master/Window%20System%20P
  - 현재 실행중인 프로세스를 나열
  - EnumProcess()를 사용한 API를 이용한 방법, SnapShot()를 사용한 운영체제를 통한 방법 실습
  - 핸들 획득 후 프로세스를 Terminate 실습  
+
 ![1일차 실습]({{site.url}}/img/Window/Day1_3.jpg){: .center-image}
 <script src="https://gist.github.com/rlarlgns/0f1b01650ea712a69553dd7f9c103cef.js"></script>  
 
 ### 실습 : Process AB
+
 ![1일차 실습]({{site.url}}/img/Window/Day1_4.jpg){: .center-image}  
 <script src="https://gist.github.com/rlarlgns/ef10ca13f3cfbd04ab5db8f19c941a3a.js"></script>  
