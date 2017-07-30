@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Window System Programming 2"
+title: "Window System Programming 3"
 description: "[STUDY] 스레드, TLS, 동기화"
 date: 2017-07-26
 tags: [study, 스레드, TLS, 동기화]
@@ -70,4 +70,3 @@ Source code : <https://github.com/rlarlgns/study/tree/master/Window%20System%20P
 
 ![3일차 실습]({{site.url}}/img/Window/Day3_3.png){: .center-image}  
 <script src="https://gist.github.com/rlarlgns/381d15451a8dc8a0f250d61491b282f4.js"></script>  
-  
