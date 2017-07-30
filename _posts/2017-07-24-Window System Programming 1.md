@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Window System Programming 1"
-description: "[study] Unicode, 메모리, 프로세스, 스레드"
+description: "[STUDY] Unicode, 메모리, 프로세스, 스레드"
 date: 2017-07-24
 tags: [study, Unicode, 메모리, 프로세스, 스레드]
 comments: true
@@ -61,7 +61,7 @@ Source code : <https://github.com/rlarlgns/study/tree/master/Window%20System%20P
  - 커널 오브젝트는 프로세스에 한정적임 -> 오브젝트를 생성한 프로세스만이 이를 제어할 수 있음 만약 다른 프로세스에서 이 오브젝트를 제어하고자 한다면 커널 오브젝트의 ID 값으로부터 핸들을 다시 얻어야 한다.
 
 # 1일차 실습  
-  
+
 ![1일차 실습]({{site.url}}/img/Window/Day1_1.jpg){: .center-image}  
 
 ### 실습 : CreateProcess

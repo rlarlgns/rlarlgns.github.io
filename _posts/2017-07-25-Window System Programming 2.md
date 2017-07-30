@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Window System Programming 2"
-description: "[study] 스레드, TLS, 동기화"
+description: "[STUDY] 스레드, TLS, 동기화"
 date: 2017-07-25
 tags: [study, 스레드, TLS, 동기화]
 comments: true
@@ -14,7 +14,8 @@ share: true
 
 # 2일차
 
-교육내용 : 스레드, TLS, 동기화
+교육내용 : 스레드, TLS, 동기화  
+Source code : <https://github.com/rlarlgns/study/tree/master/Window%20System%20Programming/Day_2>
 
 ### 스레드
  - 프로세스 내에 존재하는 실행 흐름
@@ -98,4 +99,3 @@ share: true
 
 ![2일차 실습]({{site.url}}/img/Window/Day2_4.png){: .center-image}  
 <script src="https://gist.github.com/rlarlgns/c51c37e517cdb432c7e1c2f49192ad5e.js"></script>  
-  
